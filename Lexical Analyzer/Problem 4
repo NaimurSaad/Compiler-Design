@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+
+
+    string keywords[] = {
+    "auto", "break", "case", "char", "const", "continue", "default", "do",
+    "double", "else", "enum", "extern", "float", "for", "goto", "if",
+    "int", "long", "register", "return", "short", "signed", "sizeof",
+    "static", "struct", "switch", "typedef", "union", "unsigned", "void",
+    "volatile", "while", "class", "public", "private", "protected",
+    "template", "typename", "virtual", "new", "delete", "this", "using",
+    "namespace", "bool", "true", "false", "try", "catch", "throw", "include" };
+
+    int kcount = sizeof(keywords) / sizeof(keywords[0]);
+
+    bool isKeyword(string s) {
+    for (int i = 0; i<kcount;i++) {
+        if (s == keywords[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool isIdentifier(string s) {
+
+
+    int count = 0;
+    for(int i = 0; s[i]!='\0'; i++){
+        count++;
+    }
+    if(count==0){
+        return false;
+    }
+
+
+    if (!((s[0] >= 'A' && s[0] <= 'Z') ||
+          (s[0] >= 'a' && s[0] <= 'z') ||
+           s[0] == '_')) {
+        return false;
+    }
+
+    for (int i = 1; s[i] != '\0'; i++) {
+        if (!((s[i] >= 'A' && s[i] <= 'Z') ||
+              (s[i] >= 'a' && s[i] <= 'z') ||
+              (s[i] >= '0' && s[i] <= '9') ||
+               s[i] == '_')) {
+            return false;
+        }
+
+    if(isKeyword(s)){
+        return false;
+    }
+
+    }
+
+    return true;
+}
+
+int main() {
+
+    string s;
+    cout << "Enter input: ";
+    cin >> s;
+
+    if (isIdentifier(s)) {
+        cout << "Identifier" << endl;
+    } else {
+        cout << "Not Identifier" << endl;
+    }
+
+    return 0;
+}
