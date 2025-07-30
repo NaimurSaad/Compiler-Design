@@ -61,7 +61,7 @@ int main() {
 
     string s;
     cout << "Enter input: ";
-    cin >> s;
+getline(cin,s);
 
     if (isIdentifier(s)) {
         cout << "Identifier" << endl;
