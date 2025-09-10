@@ -1,0 +1,116 @@
+// (ba)*b*a[a+ba(a+b)]*
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool fa(const string& input) {
+    int state = 20;
+
+    for (char c : input) {
+        switch (state) {
+
+            case 20:
+                if (c == 'a') state = 3;
+                else if (c == 'b') state = 12;
+                else state = 99;
+                break;
+
+            case 3:
+                if (c == 'a') state = 3;
+                else if (c == 'b') state = 4;
+                else state = 99;
+                break;
+
+                case 12:
+                if (c == 'a') state = 23;
+                else if (c == 'b') state = 2;
+                else state = 99;
+                break;
+            case 4:
+                if (c == 'a') state = 5;
+                else if (c == 'b') state = 99;
+                else state = 99;
+                break;
+
+            case 2:
+                if (c == 'a') state = 3;
+                else if (c == 'b') state = 2;
+                else state = 99;
+                break;
+
+            case 23:
+                if (c == 'a') state = 3;
+                else if (c == 'b') state = 124;
+                else state = 99;
+                break;
+
+             case 5:
+                if (c == 'a') state = 3;
+                else if (c == 'b') state = 3;
+                else state = 99;
+                break;
+
+            case 124:
+                if (c == 'a') state = 235;
+                else if (c == 'b') state = 2;
+                else state = 99;
+                break;
+
+             case 235:
+                if (c == 'a') state = 3;
+                else if (c == 'b') state = 1234;
+                else state = 99;
+                break;
+
+            case 1234:
+                if (c == 'a') state = 235;
+                else if (c == 'b') state = 24;
+                else state = 99;
+                break;
+
+                case 24:
+                if (c == 'a') state = 35;
+                else if (c == 'b') state = 2;
+                else state = 99;
+                break;
+
+                case 35:
+                if (c == 'a') state = 3;
+                else if (c == 'b') state = 34;
+                else state = 99;
+                break;
+
+                case 34:
+                if (c == 'a') state = 35;
+                else if (c == 'b') state = 4;
+                else state = 99;
+                break;
+
+
+
+            case 99:
+                state = 99;
+                break;
+        }
+    }
+
+    return (state == 3 || state == 23 || state == 235 || state == 1234 || state == 35 || state == 34);
+}
+
+int main() {
+    cout<<"Alpha={a,b}"<<endl;
+    cout<<"RE=(ba)*b*a[a+ba(a+b)]*"<<endl;
+    string input;
+    cout << "Input String: ";
+    getline(cin,input);
+
+    if (fa(input))
+        cout << "\nAccepted" << endl;
+    else
+        cout << "\nRejected" << endl;
+
+    return 0;
+}
+
+
