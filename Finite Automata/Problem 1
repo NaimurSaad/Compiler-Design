@@ -1,0 +1,45 @@
+// a(a+b)*
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+bool fa(const string& input) {
+    int state = 0;
+
+    for (char c : input) {
+        switch (state) {
+            case 0:
+                if (c == 'a') state = 1;
+                else state = 2;
+                break;
+
+            case 1:
+                if (c == 'a' || c == 'b') state = 1;
+                else state = 2;
+                break;
+
+            case 2:
+                state = 2;
+                break;
+        }
+    }
+
+    return (state == 1);
+}
+
+int main() {
+    cout<<"Alpha={a,b}"<<endl;
+    cout<<"RE= a(a+b)*"<<endl;
+    string input;
+    cout << "Input String: ";
+    cin >> input;
+
+    if (fa(input))
+        cout << "Accepted" << endl;
+    else
+        cout << "Rejected" << endl;
+
+    return 0;
+}
+
